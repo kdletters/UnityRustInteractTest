@@ -1,0 +1,7 @@
+[package]
+name = "build-tool"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+csbindgen = "1.9.3"

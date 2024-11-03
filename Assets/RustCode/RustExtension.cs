@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Text;
 
 namespace RustLib
@@ -12,10 +10,10 @@ namespace RustLib
             return new Span<byte>(ptr, length);
         }
 
-        public unsafe Span<T> AsSpan<T>()
-        {
-            return MemoryMarshal.CreateSpan(ref Unsafe.AsRef<T>(ptr), length / Unsafe.SizeOf<T>());
-        }
+        // public unsafe Span<T> AsSpan<T>()
+        // {
+        //     return MemoryMarshal.CreateSpan(ref Unsafe.AsRef<T>(ptr), length / Unsafe.SizeOf<T>());
+        // }
 
         public override string ToString()
         {

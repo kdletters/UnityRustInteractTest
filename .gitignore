@@ -5,6 +5,8 @@ obj/
 bin/
 [Tt]emp/
 UserSettings/
+[Bb]uild/
+[Bb]uilds/
 
 /*.csproj
 /*.sln
