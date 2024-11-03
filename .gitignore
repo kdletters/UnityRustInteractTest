@@ -1,0 +1,11 @@
+.idea/
+[Ll]ibrary/
+[Ll]ogs/
+obj/
+bin/
+[Tt]emp/
+UserSettings/
+
+/*.csproj
+/*.sln
+/*.user
