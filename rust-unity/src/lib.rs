@@ -1,4 +1,4 @@
-use std::ffi::{c_schar, CString};
+mod minecraft;
 
 #[repr(C)]
 pub struct Obj {
