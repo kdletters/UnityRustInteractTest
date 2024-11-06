@@ -25,20 +25,26 @@ namespace RustLib
         [DllImport(__DllName, EntryPoint = "alloc_u8_string", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern ByteBuffer* alloc_u8_string();
 
-        [DllImport(__DllName, EntryPoint = "free_u8_string", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void free_u8_string(ByteBuffer* buffer);
-
         [DllImport(__DllName, EntryPoint = "alloc_u8_buffer", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern ByteBuffer* alloc_u8_buffer();
-
-        [DllImport(__DllName, EntryPoint = "free_u8_buffer", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void free_u8_buffer(ByteBuffer* buffer);
 
         [DllImport(__DllName, EntryPoint = "alloc_i32_buffer", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern ByteBuffer* alloc_i32_buffer();
 
-        [DllImport(__DllName, EntryPoint = "free_i32_buffer", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void free_i32_buffer(ByteBuffer* buffer);
+        [DllImport(__DllName, EntryPoint = "free_byte_buffer", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        public static extern void free_byte_buffer(ByteBuffer* buffer);
+
+        [DllImport(__DllName, EntryPoint = "create_game", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        public static extern void* create_game(int width, int height, int mine_count);
+
+        [DllImport(__DllName, EntryPoint = "free_game", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        public static extern void free_game(void* game);
+
+        [DllImport(__DllName, EntryPoint = "open_block", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        public static extern void open_block(void* game, int x, int y);
+
+        [DllImport(__DllName, EntryPoint = "get_block", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        public static extern Block* get_block(void* game, int x, int y);
 
 
     }
@@ -55,6 +61,17 @@ namespace RustLib
         public byte* ptr;
         public int length;
         public int capacity;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public unsafe partial struct Block
+    {
+        public int x;
+        public int y;
+        public int num;
+        [MarshalAs(UnmanagedType.U1)] public bool is_mine;
+        [MarshalAs(UnmanagedType.U1)] public bool is_flag;
+        [MarshalAs(UnmanagedType.U1)] public bool is_opened;
     }
 
 

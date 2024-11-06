@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Text;
+using Unity.Collections.LowLevel.Unsafe;
 
 namespace RustLib
 {
@@ -10,10 +12,10 @@ namespace RustLib
             return new Span<byte>(ptr, length);
         }
 
-        // public unsafe Span<T> AsSpan<T>()
-        // {
-        //     return MemoryMarshal.CreateSpan(ref Unsafe.AsRef<T>(ptr), length / Unsafe.SizeOf<T>());
-        // }
+        public unsafe Span<T> AsSpan<T>() where T : struct
+        {
+            return MemoryMarshal.CreateSpan(ref UnsafeUtility.AsRef<T>(ptr), length / UnsafeUtility.SizeOf<T>());
+        }
 
         public override string ToString()
         {
@@ -26,7 +28,7 @@ namespace RustLib
         public unsafe void Dispose()
         {
             Console.WriteLine("Disposing");
-            Lib.free_u8_string(name);
+            Lib.free_byte_buffer(name);
         }
     }
 }

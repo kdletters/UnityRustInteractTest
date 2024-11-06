@@ -3,7 +3,7 @@ $UNITY_PATH = "E:\Software\Unity\6000.0.22f1c1\Editor\Unity.exe"
 $BUILD_PATH = "Build\Windows\UnityRustInteractTest.exe"
 $RUST_PATH = "rust-unity"
 $RUST_BUILD_TOOL_PATH = "rust-unity\build-tool"
-$DLL_PATH = "Assets\RustCode\dlls"
+$DLL_PATH = "Assets\RustLib\dlls"
 
 # 获取当前路径
 $basePath = $PWD
@@ -29,3 +29,5 @@ if (Test-Path $DLL_PATH) {
 }
 
 Write-Output "Build completed successfully!"
+
+Start-Process $BUILD_PATH
