@@ -4,4 +4,4 @@ Because of the difference between Rust and C#, string and array(Vec in Rust and 
 
 # TODO
 
-- Gather all dlls in a directory
+- Gather all dlls in one directory
