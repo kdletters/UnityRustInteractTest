@@ -1,8 +1,3 @@
-use std::cell::RefCell;
-use std::rc::Rc;
-
-type Ptr<T> = Rc<RefCell<T>>;
-
 #[repr(C)]
 pub struct ByteBuffer {
     ptr: *mut u8,

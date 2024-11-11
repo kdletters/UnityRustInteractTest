@@ -8,3 +8,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 time = { version = "0.3.36", features = ["serde", "serde-human-readable"] }
+rand = "0.9.0-alpha.2"

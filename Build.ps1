@@ -19,6 +19,7 @@ cargo run --release
 cd $basePath
 
 # 运行 Unity 构建命令
+Write-Output "Starting Unity build..."
 Start-Process $UNITY_PATH "-quit -batchmode -buildWindows64Player $BUILD_PATH" -Wait
 Write-Output "Unity build completed. $LASTEXITCODE"
 

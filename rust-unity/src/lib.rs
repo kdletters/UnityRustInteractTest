@@ -1,7 +1,7 @@
 use std::ffi::c_void;
 use core::ByteBuffer;
 
-mod minecraft;
+mod minesweeper;
 mod core;
 
 #[repr(C)]

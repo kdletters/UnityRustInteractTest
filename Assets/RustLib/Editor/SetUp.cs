@@ -16,34 +16,34 @@ namespace RustLib.Editor
         [InitializeOnLoadMethod]
         private static void LoadDLL()
         {
-            EditorApplication.playModeStateChanged += change =>
-            {
-                switch (change)
-                {
-                    case PlayModeStateChange.EnteredPlayMode:
+            // EditorApplication.playModeStateChanged += change =>
+            // {
+            //     switch (change)
+            //     {
+            //         case PlayModeStateChange.EnteredPlayMode:
 #if UNITY_EDITOR_WIN
+                        UnloadDLL();
                         var path = new FileInfo(RustDLLPath).FullName;
                         hModule = LoadLibrary(path);
                         Debug.Log($"Loaded DLL: {hModule}");
 #endif
-                        break;
-                    case PlayModeStateChange.ExitingPlayMode:
-                        UnloadDLL();
-                        break;
-                    case PlayModeStateChange.EnteredEditMode:
-                    case PlayModeStateChange.ExitingEditMode:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(change), change, null);
-                }
-            };
+            //             break;
+            //         case PlayModeStateChange.ExitingPlayMode:
+            //             UnloadDLL();
+            //             break;
+            //         case PlayModeStateChange.EnteredEditMode:
+            //         case PlayModeStateChange.ExitingEditMode:
+            //             break;
+            //         default:
+            //             throw new ArgumentOutOfRangeException(nameof(change), change, null);
+            //     }
+            // };
         }
 
         private static void UnloadDLL()
         {
 #if UNITY_EDITOR_WIN
             Debug.Log($"Unload DLL: {hModule} {FreeLibrary(hModule)}");
-            hModule = IntPtr.Zero;
 #endif
         }
 

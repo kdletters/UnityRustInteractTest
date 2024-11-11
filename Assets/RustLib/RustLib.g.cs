@@ -35,16 +35,33 @@ namespace RustLib
         public static extern void free_byte_buffer(ByteBuffer* buffer);
 
         [DllImport(__DllName, EntryPoint = "create_game", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void* create_game(int width, int height, int mine_count);
+        public static extern MinesweeperGame* create_game(int width, int height, int mine_count);
 
         [DllImport(__DllName, EntryPoint = "free_game", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void free_game(void* game);
+        public static extern void free_game(MinesweeperGame* game);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate void set_on_game_over_callback_delegate(bool arg1, int arg2, int arg3);
+
+        [DllImport(__DllName, EntryPoint = "set_on_game_over", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        public static extern void set_on_game_over(MinesweeperGame* game, set_on_game_over_callback_delegate callback);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate void set_on_open_block_callback_delegate(int arg1, int arg2);
+
+        [DllImport(__DllName, EntryPoint = "set_on_open_block", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        public static extern void set_on_open_block(MinesweeperGame* game, set_on_open_block_callback_delegate callback);
 
         [DllImport(__DllName, EntryPoint = "open_block", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void open_block(void* game, int x, int y);
+        [return: MarshalAs(UnmanagedType.U1)]
+        public static extern bool open_block(MinesweeperGame* game, int x, int y);
+
+        [DllImport(__DllName, EntryPoint = "flag_block", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        public static extern bool flag_block(MinesweeperGame* game, int x, int y);
 
         [DllImport(__DllName, EntryPoint = "get_block", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern Block* get_block(void* game, int x, int y);
+        public static extern Block* get_block(MinesweeperGame* game, int x, int y);
 
 
     }
@@ -72,6 +89,11 @@ namespace RustLib
         [MarshalAs(UnmanagedType.U1)] public bool is_mine;
         [MarshalAs(UnmanagedType.U1)] public bool is_flag;
         [MarshalAs(UnmanagedType.U1)] public bool is_opened;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public unsafe partial struct MinesweeperGame
+    {
     }
 
 

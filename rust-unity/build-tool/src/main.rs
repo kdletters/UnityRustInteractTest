@@ -3,7 +3,7 @@ fn main() {
     csbindgen::Builder::default()
         .input_extern_file("../src/lib.rs")
         .input_extern_file("../src/core.rs")
-        .input_extern_file("../src/minecraft.rs")
+        .input_extern_file("../src/minesweeper.rs")
         .csharp_dll_name("rust_unity")
         .csharp_namespace("RustLib")
         .csharp_class_name("Lib")
