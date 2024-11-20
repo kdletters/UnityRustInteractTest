@@ -1,8 +1,7 @@
-use std::ffi::c_void;
 use core::ByteBuffer;
 
-mod minesweeper;
-mod core;
+pub mod minesweeper;
+pub mod core;
 
 #[repr(C)]
 pub struct Obj {

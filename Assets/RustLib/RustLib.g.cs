@@ -56,6 +56,9 @@ namespace RustLib
         [return: MarshalAs(UnmanagedType.U1)]
         public static extern bool open_block(MinesweeperGame* game, int x, int y);
 
+        [DllImport(__DllName, EntryPoint = "quick_open", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        public static extern void quick_open(MinesweeperGame* game, int x, int y);
+
         [DllImport(__DllName, EntryPoint = "flag_block", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: MarshalAs(UnmanagedType.U1)]
         public static extern bool flag_block(MinesweeperGame* game, int x, int y);
